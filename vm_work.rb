@@ -59,13 +59,12 @@ class VendingMachine
   end
 
   def stock
-    stock_info = {drink:"cola",price:120,stock:5}
-    @stock_info = stock_info
-end
-
-  def stock_info
-      @stock_info
+    @stock_info = {drink:"cola",price:120,stock:5}
   end
+
+  # def stock_info
+  #     @stock_info
+  # end
 
   def purchase
       juice_stock=@stock_info[:stock]
@@ -75,8 +74,8 @@ end
       juice_stock = juice_stock - 1
       p juice_stock
   #配列に本数を書き戻す
-      stock_info[:stock]=juice_stock
-      p stock_info
+      @stock_info[:stock]=juice_stock
+      p @stock_info
   #お金の残高を減らす
       @slot_money = @slot_money - juice_price
       p @slot_money
@@ -89,6 +88,15 @@ end
       juice_sales=@stock_info[:price]*(5-@stock_info[:stock])
       p juice_sales
       
+  end
+
+  def store_drink
+    @stock_info = [{drink:"cola",price:120,stock:5},{drink:"redbull",price:120,stock:5},{drink:"water",price:100,stock:5}]
+  end
+
+  def purchasable_drink_names?
+    @stock_info = @stock_info.select{|i| i[:price] <= @slot_money }
+    @stock_info = @stock_info.select{|i| i[:stock] >= 1 }
   end
 
 end
