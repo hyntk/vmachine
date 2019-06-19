@@ -67,21 +67,30 @@ class VendingMachine
   # end
 
   def purchase
-      juice_stock=@stock_info[:stock]
-      juice_price=@stock_info[:price]
-      if juice_stock >= 1 && @slot_money >= juice_price
+    p "どの飲み物を買いますか？"
+    p "0:cola"
+    p "1:redbull"
+    p "2:water"
+    p @stock_info
+
+    input = gets.chomp.to_i
+    @selected_drink = @stock_info[input]
+    p @selected_drink
+    juice_stock=@selected_drink[:stock]
+    juice_price=@selected_drink[:price]
+    if juice_stock >= 1 && @slot_money >= juice_price
   #本数を1本減らす
-      juice_stock = juice_stock - 1
-      p juice_stock
+    juice_stock = juice_stock - 1
+    p juice_stock
   #配列に本数を書き戻す
-      @stock_info[:stock]=juice_stock
-      p @stock_info
+    @stock_info[input][:stock]=juice_stock
+    p @stock_info
   #お金の残高を減らす
-      @slot_money = @slot_money - juice_price
-      p @slot_money
-      else
-      return false
-      end
+    @slot_money = @slot_money - juice_price
+    p @slot_money
+    else
+    return false
+    end
   end
 
   def sale_amount
