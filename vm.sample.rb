@@ -48,7 +48,6 @@ class VendingMachine
         p @stock_info
 
         input = gets.chomp.to_i
-        # p input
         @selected_drink = @stock_info[input]
         p @selected_drink
         juice_stock=@selected_drink[:stock]
