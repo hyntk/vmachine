@@ -19,7 +19,7 @@
 # vm.return_money
 
 # ステップ2について
-# オブジェクト志向でクラス内で作成したオブジェクトを利用する
+# オブジェクト指向でクラス内で作成したオブジェクトを利用する
 
 class VendingMachine
   # ステップ０　お金の投入と払い戻しの例コード
@@ -62,6 +62,7 @@ class VendingMachine
   #   @stock_info = {drink:"cola",price:120,stock:5}
   # end
 
+  # purchaseを呼び出す前にstore_drinkを呼び出すこと
   def purchase
     p "どの飲み物を買いますか？"
     p "0:cola"
@@ -101,9 +102,11 @@ class VendingMachine
 
   def store_drink
     @stock_info = [{drink:"cola",price:120,stock:5},{drink:"redbull",price:120,stock:5},{drink:"water",price:100,stock:5}]
+    #store_drinkが在庫情報を表示するというよりは在庫の初期値を設定するメソッドになっている
   end
 
   def purchasable_drink_names?
+    # 在庫があるドリンクを表示するメソッドになっている
     @purchasable_stock_info = @stock_info.select{|i| i[:price] <= @slot_money }
     @purchasable_stock_info = @stock_info.select{|i| i[:stock] >= 1 }
   end
